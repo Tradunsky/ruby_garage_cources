@@ -1,4 +1,4 @@
-RubyGarage courses HOMEWORKS
+RubyGarage cources HOMEWORKS
 ============================
 <pre><code>
 describe ruby_garage_cources do
