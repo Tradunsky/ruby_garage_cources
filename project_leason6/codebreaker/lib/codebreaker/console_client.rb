@@ -7,8 +7,7 @@ module Codebreaker
     attr_reader :description                
     
     def initialize game, validator_code      
-      @game, @validator_code = game, validator_code
-      
+      @game, @validator_code = game, validator_code      
       @description = <<-DESC
       Codebreaker is a logic game in which a code-breaker tries to break a secret code created by a code-maker. The code-maker, which will be played by the application we’re going to write, creates a secret code of four numbers between 1 and 6.
 
@@ -19,13 +18,11 @@ A + indicates an exact match: one of the numbers in the try_guess is the same as
 A - indicates a number match: one of the numbers in the try_guess is the same as one of the numbers in the secret code but in a different position.
 
 // Also, u can get a hint, just press 'h'
-                        DESC
-      
-      
+                        DESC            
       puts "Welcome to Codebreaker!"
       puts @description     
     end
-    
+     
     def restart
       @time_start = Time.now
       @game.restart
@@ -74,7 +71,7 @@ A - indicates a number match: one of the numbers in the try_guess is the same as
     private    
     def try_guess code      
       if @validator_code.valid?(code)
-        @game.guess code
+        puts @game.guess code
         check_game_state
       else
         puts "**ERROR** Invalid code format:"
