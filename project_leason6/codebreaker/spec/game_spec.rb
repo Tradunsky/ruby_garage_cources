@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'codebreaker/game'
-require 'codebreaker/validator_code'
+require 'codebreaker/validator_matcher'
 
 describe Codebreaker::Game do
   Game = Codebreaker::Game
@@ -15,7 +15,7 @@ describe Codebreaker::Game do
   def get_number game
     number = ""
     GUESS_SIZE.times{ number += game.hint }
-    number = number.match(/[1-#{MAX_GUESS_NUM}]{4}/).to_s 
+    number = number.match(/[1-6]{4}/).to_s
   end
   
   context ".start" do
@@ -29,9 +29,10 @@ describe Codebreaker::Game do
       expect(number).not_to be_empty
     end
 
-    it "secret code must be valid" do 
+    it "secret code must be valid", focus:true do 
       number = get_number subject
       expect(number).to match(/[1-#{MAX_GUESS_NUM}]{#{GUESS_SIZE}}/)
+      #expect(number).to valid_code(GUESS_SIZE, MAX_GUESS_NUM)
     end 
     
     it "always generete new random code" do
@@ -58,27 +59,32 @@ describe Codebreaker::Game do
     end
     
     it "result include \"+\" if guess contains right number on right position" do
-      closest_guess = subject.hint[0]+"000"
+      number = get_number subject
+      closest_guess = number[0]+"000"
       expect(subject.guess(closest_guess)).to include("+")
     end
     
     it "result include \"-\" if guess contains right number on wrong position" do
       number = get_number subject
-      closest_guess = number[3]+"000"
+      closest_guess = number[1]+"000"
       expect(subject.guess(closest_guess)).to include("-")
     end    
   end
   
   context ".hint" do
   
-    its(:hint) {should_not be_empty}
+    its(:hint) { should_not be_empty }
     
     it "result contains one digit of secret code" do
       expect(subject.hint).to match(/[1-#{MAX_GUESS_NUM}]/)
     end
     
+    it "size must be eq size of secret code" do
+      expect(subject.hint.size).to eq(GUESS_SIZE)
+    end
+    
     it "other digits must be hiding" do
-      expect()
+      expect(subject.hint).to include("X")
     end
     
   end

@@ -1,6 +1,6 @@
 module Codebreaker
   class Game
-    attr_reader :count_numbers, :max_number, :attempt, :game_state, :hints 
+    attr_reader :count_numbers, :max_number, :attempt, :max_attempt, :game_state, :hints 
     
     
     def initialize(count_numbers=4, max_number=6, max_attempt=4)
