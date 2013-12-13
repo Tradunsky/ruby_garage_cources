@@ -13,9 +13,7 @@ module Codebreaker
       end
       
       def failure_message
-        fail_message = ""
-        @errors.each {|message| fail_message += message + "\n"}
-        fail_message
+        @errors.join("\n")
       end        
     end    
     def valid_code(size, max_number)
