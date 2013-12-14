@@ -26,8 +26,8 @@
 
       def hint            
         @hints += 1 if @hints < @number.size-1
-        h = @number[0..@hints]
-        h += "X" * (@number.size - h.size)
+        semiclosed_hint = @number[0..@hints]
+        semiclosed_hint += "X" * (@number.size - semiclosed_hint.size)
       end
 
       private          
