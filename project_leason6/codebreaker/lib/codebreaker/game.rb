@@ -57,8 +57,4 @@
         answer
       end
     end  
-
-    game = Game.new  
-    p game.guess "1234"
-
   end
