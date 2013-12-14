@@ -15,6 +15,7 @@ module Codebreaker
     
     def failure_message
        @errors.join("\n")
+       #@errors * "\n" #another ruby way
     end  
       
     def has_errors?
