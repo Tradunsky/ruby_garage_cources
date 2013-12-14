@@ -47,15 +47,18 @@
         answer.count("+") == @count_numbers
       end
 
-      def get_answer_for code
-        answer = ""
-        code.each_char.with_index do |char, index|          
-          if (@number.include?(char))
-            answer += (@number[index] == char)? "+" : "-"
-          end
+      def get_answer_for code  
+        answer = ""      
+        is = { true => '+', false => '-' }
+        code.each_char.with_index do |digit, index|          
+          answer += is[@number[index] == digit] if (@number.include?(digit))          
         end    
         answer = answer.chars.sort.join if answer.include?("-")
         answer
       end
-    end    
+    end  
+
+    game = Game.new  
+    p game.guess "1234"
+
   end

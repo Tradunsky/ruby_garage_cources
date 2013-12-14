@@ -14,6 +14,7 @@ module Codebreaker
       
       def failure_message
         @errors.join("\n")
+        #@errors * "\n" #another ruby way
       end        
     end    
     def valid_code(size, max_number)
